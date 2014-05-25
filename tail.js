@@ -38,7 +38,7 @@ function tail (x,y,n,p) {
 
 	self.hitBullet = function () {
 		if (!self.dead) {
-			self.health = Math.max(0,self.health-23);
+			self.health = Math.max(0,self.health-9);
 			if (self.health==0) {
 				self.dead = true;
 				self.die();

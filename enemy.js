@@ -70,7 +70,7 @@ function enemy(x,y) {
 	self.hitBullet = function (bullet) {
 		self.xVelocity += Math.cos(bullet.angle)*100;
 		self.yVelocity += Math.sin(bullet.angle)*100;
-		self.health -= 3;
+		self.health -= 7;
 		if (self.health <= 0) {
 			self.dead = true;
 		}

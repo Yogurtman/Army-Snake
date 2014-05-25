@@ -994,7 +994,7 @@ love.graphics.drawloop = function (a) {
 	this.clearScreen();
 	this.ctx.save();
 	this.ctx.fillStyle = this.rgb(this.backgroundColor.r,this.backgroundColor.g,this.backgroundColor.b);
-	// this.background();
+	this.background();
 	this.ctx.fillStyle = this.rgb(this.color.r,this.color.g,this.color.b);
 	this.ctx.strokeStyle = this.rgb(this.color.r,this.color.g,this.color.b);
 	this.ctx.globalAlpha = this.color.a/255;

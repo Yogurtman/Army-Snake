@@ -1,6 +1,6 @@
 function game_load () {
 	started = false
-	love.graphics.setBackgroundColor(255,0,0)
+	love.graphics.setBackgroundColor(10,10,10)
 	mySnake = head();
 	mySnake.addTail("turret");
 	mySnake.addTail("engineer");
@@ -17,6 +17,11 @@ function game_load () {
 
 	myBullets = [];
 
+	myBoulders = [];
+	for (var i = 0; i < 3; i++) {
+		myBoulders.push(boulder((i+1)*4))
+	};
+
 	myCamera = camera(mySnake);
 
 	pause = false
@@ -28,15 +33,15 @@ function game_load () {
 		myBackground.push({x:-400+Math.random()*1500,y:-400+Math.random()*1500,s:5+Math.random()*40})
 	}
 
-	backgroundCanvas = love.graphics.newCanvas(10000,10000)
-	love.graphics.setCanvas(backgroundCanvas)
-	love.graphics.setColor(10,10,10)
-	love.graphics.rectangle("fill",0,0,10000,10000)
-	love.graphics.setBlendMode("destination-out")
-	love.graphics.circle("fill",5000,5000,750)
-	love.graphics.setBlendMode("source-over")
-	love.graphics.setColor(255,255,255)
-	love.graphics.setCanvas()
+	// backgroundCanvas = love.graphics.newCanvas(1600,1600)
+	// love.graphics.setCanvas(backgroundCanvas)
+	// love.graphics.setColor(10,10,10)
+	// love.graphics.rectangle("fill",0,0,1600,1600)
+	// love.graphics.setBlendMode("destination-out")
+	// love.graphics.circle("fill",800+25,800+25,745)
+	// love.graphics.setBlendMode("source-over")
+	// love.graphics.setColor(255,255,255)
+	// love.graphics.setCanvas()
 
 
 }
@@ -62,7 +67,6 @@ function game_update (dt) {
 					myOrbs.splice(i,1);
 				}
 			}
-			
 
 			for (var i = myEnemies.length-1; i >= 0; i--) {
 				myEnemies[i].update(dt);
@@ -78,6 +82,10 @@ function game_update (dt) {
 				if (myBullets[i].dead) {
 					myBullets.splice(i,1);
 				}
+			}
+
+			for (var i = 0; i < myBoulders.length; i++) {
+				myBoulders[i].update(dt);
 			}
 		}
 		
@@ -110,12 +118,17 @@ function game_draw () {
 		myBullets[i].draw()
 	}
 
-	love.graphics.draw(backgroundCanvas,-5000+375,-5000+375)
+	for (var i = 0; i < myBoulders.length; i++) {
+		myBoulders[i].draw();
+	}
 
-	// love.graphics.setColor(10,10,10)
-	// love.graphics.setBlendMode("destination-over")
-	// love.graphics.rectangle("fill",-2000,-2000,5000,5000)
-	// love.graphics.setBlendMode("source-over")
+	love.graphics.setLineWidth(1000)
+	love.graphics.setColor(10,10,10)
+	love.graphics.circle("line",400,400,1250)
+	love.graphics.setLineWidth(1)
+
+
+	//love.graphics.draw(backgroundCanvas,-800+375,-800+375)
 
 	love.graphics.pop();
 
